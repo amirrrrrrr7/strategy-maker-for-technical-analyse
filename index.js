@@ -1203,8 +1203,14 @@ $(document).ready(function() {
 
     // done button
     $('#done').click(function() {
-       $('#id_some_str').val($('.hidden').text());
+       $('#id_some_str').val($('.hidden span').text());
        $("#id_persian_text").val($('.result').text());
+    //    console.log(JSON.stringify(($('.hidden span').text())))
+       $.post("URL",
+       JSON.stringify(($('.hidden span').text())),
+        function(data,status){
+        console.log("Data: " + data + "\nStatus: " + status);
+        })
     });
     // =====================
 
@@ -1221,8 +1227,4 @@ $(document).ready(function() {
     });
     // =====================
 
-    // hide django field
-
-    $('.django-hide-feild').css('display','none')
-    
 })
