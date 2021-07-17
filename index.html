@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script src="./jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery-ui.css">
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <title>startegy maker</title>
+</head>
+<body>
+    <form class="toolbar" method="post" >
+        <div >
+            <h1 align="center">
+                استراتژی ساز
+            </h1>
+        </div>
+        
+        <br>
+        <div class="toolbar-parameter">
+            <div>
+                <!-- indicator list -->
+                <select name="" id="indic-list" class="select-list">
+                    <option value="1" selected="selected">اندیکاتور</option>
+                    <option value="2" id="">RSI</option>
+                    <option value="3" id="">MACD</option>
+                    <option value="4" id="">SMA</option>
+                    <option value="5" id="">EMA</option>
+                    <option value="6" id="">WMA</option>
+                    <option value="7" id="">VWMA</option>
+                    <option value="8" id="">Stochastic</option>
+                    <option value="9" id="">Stochastic Fast</option>
+                    <option value="10" id="">Stochastic Full</option>
+                    <option value="11" id="">CCI</option>
+                    <option value="12" id="">ADX</option>
+                    <option value="13" id="">ATR</option>
+                    <option value="14" id="">Bolinger Bands</option>
+                    <option value="15" id="">Parabolic SAR</option>
+                    <option value="16" id="">Ichimoku</option>
+                    <option value="17" id="">Momentom</option>
+                    <option value="18" id="">Williams R</option>
+                    <option value="19" id="">Rate of Change</option>
+                    <option value="20" id="">Aroon</option>
+                </select>
+
+                <!-- price list -->
+                <select name="" id="price-list" class="select-list">
+                    <option value="1" selected="selected">قیمت</option>
+                    <option value="2" id=""> قیمت آغازین </option>
+                    <option value="3" id=""> بالاترین قیمت </option>
+                    <option value="4" id=""> پایین ترین قیمت </option>
+                    <option value="5" id=""> قیمت پایانی </option>
+                </select>
+
+                <!-- parenthesis list -->
+                <select name="" id="prnts-list" class="select-list">
+                    <option value="1" selected="selected">پرانتز</option>
+                    <option value="2" id=""> پرانتز باز </option>
+                    <option value="3" id=""> پرانتز بسته</option>
+                </select>
+
+                <!-- operator list -->
+                <select name="" id="op-list" class="select-list">
+                    <option value="1" selected="selected">عملگر</option>
+                    <option value="2">بزرگتر</option>
+                    <option value="3">کوچکتر</option>
+                    <option value="4">بزرگتر مساوی</option>
+                    <option value="5">کوچکتر مساوی</option>
+                    <option value="6">مساوی</option>
+                    <option value="7">تقاطع رو به بالا</option>
+                    <option value="8">تقاطع رو به پایین</option>
+                    <option value="9">به اضافه</option>
+                    <option value="10">منها</option>
+                    <option value="11">ضربدر</option>
+                    <option value="12">تقسیم</option>
+                </select>
+
+                <!-- volume button -->
+                <input type="button" id="vol-btn" class="button-tools" value="حجم">
+
+                <!-- amount button -->
+                <input type="button" id="amnt-btn" class="button-tools" value="مقدار">
+
+                <!-- done list -->
+                <select id="done-list" class="select-list">
+                    <option value="1" selected="selected">انجام</option>
+                    <option value="2">بود</option>
+                    <option value="3">بود و</option>
+                    <option value="4">بود یا</option>
+                </select>
+            </div>
+            <!-- ============================== -->
+
+            <div class="container">
+                <span> اگر </span>
+                <div class="result inline-blk">
+                </div>
+                <input id="del" class="" type="button" value="حذف" /><br>
+            </div>
+
+                <input type="submit" id="done" class="" value="بخر" >
+            
+                <div style="margin: 50px;display: block;" class="hidden" dir="ltr">
+                    <span>[ { </span>
+                    <div class="json inline-blk" ></div>
+                </div>
+        </div> 
+        <div class="side-form">        
+            <!-- buy or sell condition -->
+            <p style="margin-bottom: 5px;padding: 0;">نوع استراتژی:</p>
+            <input type="radio" id="buystr" name="str" value="" checked>
+            <label for="buystr"> استراتژی خرید </label><br>
+            <input type="radio" id="sellstr" name="str" value="">
+            <label for="sellstr"> استراتژی فروش </label><br><br>
+        </div>
+    </form>     
+    <!-- ========= indicators form ========== -->
+
+    <!-- rsi form -->
+    <form class="rsi-form">
+        <span>اندیکاتور RSI با دوره ی </span>
+        <input id="rsi-inpt" type="text" class="num-inpt" />
+        <span>خط RSI</span>
+    </form>
+
+    <!-- macd form -->
+    <form class="macd-form">
+        <span>اندیکاتور MACD<br> به مقادیر</span>
+        <span>میانگین متحرک اول<input id="macd-inpt1" type="text" class="num-inpt"/></span><br>
+        <span>و میانگین متحرک دوم<input id="macd-inpt2" type="text" class="num-inpt"/></span><br>
+        <span> و سیگنال<input id="macd-inpt3" type="text" class="num-inpt"/></span><br>
+        <input type="radio" id="macdLine" name="line" value=" خط macd " checked>
+        <label for="macdLine">خط MACD</label><br>
+        <input type="radio" id="signalLine" name="line" value=" خط سیگنال ">
+        <label for="signalLine">خط سیگنال</label><br>
+    </form>
+
+    <!-- sma form -->
+    <form class="sma-form">
+        <span>اندیکاتور SMA با دوره ی </span>
+        <input id="sma-inpt" type="text" class="num-inpt" />
+        <span>خط SMA</span>
+    </form>
+
+    <!-- ema form -->
+    <form class="ema-form">
+        <span>اندیکاتور EMA با دوره ی </span>
+        <input id="ema-inpt" type="text" class="num-inpt" />
+        <span>خط EMA</span>
+    </form>
+
+    <!-- wma form -->
+    <form class="wma-form">
+        <span>اندیکاتور WMA با دوره ی </span>
+        <input id="wma-inpt" type="text" class="num-inpt" />
+        <span>خط AV</span>
+    </form>
+
+    <!-- vwma form -->
+    <form class="vwma-form">
+        <span>اندیکاتور VWMA با دوره ی </span>
+        <input id="vwma-inpt" type="text" class="num-inpt" />
+        <span>خط VWMA</span>
+    </form>
+
+    <!-- stochastic form -->
+    <form class="stochastic-form">
+        <span>اندیکاتور Stochastic<br> به مقادیر</span>
+        <span>دوره ی<input id="stochastic-inpt1" type="text" class="num-inpt"/></span><br>
+        <span>و دوره ی dFast<input id="stochastic-inpt2" type="text" class="num-inpt"/></span><br>
+        <span> و دوره ی dSlow<input id="stochastic-inpt3" type="text" class="num-inpt"/></span><br>
+        <input type="radio" id="PercK" name="perc" value=" خط %K " checked>
+        <label for="PercK">خط %K</label><br>
+        <input type="radio" id="PercD" name="perc" value=" خط %D ">
+        <label for="PercD">خط %D</label><br>
+    </form>
+
+    <!-- stochastic Fast form -->
+    <form class="stochasticFast-form">
+        <span>اندیکاتور Stochastic Fast<br> به مقادیر</span>
+        <span>دوره ی<input id="stochasticFast-inpt1" type="text" class="num-inpt"/></span><br>
+        <span>و دوره ی dFast<input id="stochasticFast-inpt2" type="text" class="num-inpt"/></span><br>
+        <input type="radio" id="PercKFast" name="percFast" value=" خط %K " checked>
+        <label for="PercKFast">خط %K</label><br>
+        <input type="radio" id="PercDFast" name="percFast" value=" خط %D ">
+        <label for="PercDFast">خط %D</label><br>
+    </form>
+
+    <!-- stochastic Full form -->
+    <form class="stochasticFull-form">
+        <span>اندیکاتور Stochastic Full<br> به مقادیر</span>
+        <span>دوره ی<input id="stochasticFull-inpt1" type="text" class="num-inpt"/></span><br>
+        <span>و دوره ی dFast<input id="stochasticFull-inpt2" type="text" class="num-inpt"/></span><br>
+        <span> و دوره ی dSlow<input id="stochasticFull-inpt3" type="text" class="num-inpt"/></span><br>
+        <input type="radio" id="PercKFull" name="percFull" value=" خط %K " checked>
+        <label for="PercKFull">خط %K</label><br>
+        <input type="radio" id="PercDFull" name="percFull" value=" خط %D ">
+        <label for="PercDFull">خط %D</label><br>
+        <input type="radio" id="PercDSlowFull" name="percFull" value=" خط %D Slow ">
+        <label for="PercDSlowFull">خط %D Slow</label><br>
+    </form>
+
+    <!-- cci form -->
+    <form class="CCI-form">
+        <span>اندیکاتور CCI با دوره ی </span>
+        <input id="CCI-inpt" type="text" class="num-inpt" />
+        <span>خط CCI</span>
+    </form>
+
+    <!-- adx form -->
+    <form class="ADX-form">
+        <span>اندیکاتور ADX با دوره ی </span>
+        <input id="ADX-inpt" type="text" class="num-inpt" />
+        <span>خط ADX</span>
+    </form>
+
+    <!-- atr form -->
+    <form class="ATR-form">
+        <span>اندیکاتور ATR با دوره ی </span>
+        <input id="ATR-inpt" type="text" class="num-inpt" />
+        <span>خط ATR</span>
+    </form>
+
+    <!-- bolinger bands form -->
+    <form class="BBands-form">
+        <span>اندیکاتور Boliger Bands<br> به مقادیر</span>
+        <span>دوره ی<input id="BBands-inpt1" type="text" class="num-inpt"/></span><br>
+        <span>و دوره ی DevFactor<input id="BBands-inpt2" type="text" class="num-inpt"/></span><br>
+        <input type="radio" id="mid" name="BBands" value=" خط mid " checked>
+        <label for="mid">خط mid</label><br>
+        <input type="radio" id="tor" name="BBands" value=" خط tor ">
+        <label for="tor">خط tor</label><br>
+        <input type="radio" id="bot" name="BBands" value=" خط bot ">
+        <label for="bot">خط bot</label><br>
+    </form>
+
+    <!-- para bolic SAR form -->
+    <form class="PSAR-form">
+        <span>اندیکاتور Parabolic SAR<br> به مقادیر</span>
+        <span>دوره ی<input id="PSAR-inpt1" type="text" class="num-inpt"/></span><br>
+        <span>و دوره ی at<input id="PSAR-inpt2" type="text" class="num-inpt"/></span><br>
+        <span> و دوره ی at max<input id="PSAR-inpt3" type="text" class="num-inpt"/></span><br>
+        <span>خط PSAR</span>
+    </form>
+
+    <!-- ichimoku form -->
+    <form class="ichi-form">
+        <span>اندیکاتور Ichimoku<br> به مقادیر</span>
+        <span> tenkan<input id="ichi-inpt1" type="text" class="num-inpt"/></span><br>
+        <span> و kijun<input id="ichi-inpt2" type="text" class="num-inpt"/></span><br>
+        <span> و senkou<input id="ichi-inpt3" type="text" class="num-inpt"/></span><br>
+        <span> و senkou-leud<input id="ichi-inpt4" type="text" class="num-inpt"/></span><br>
+        <span> و chikou<input id="ichi-inpt5" type="text" class="num-inpt"/></span><br>
+        <input type="radio" id="tenkanSen" name="ichi" value=" خط tenkan-sen " checked>
+        <label for="tenkanSen">خط tenkan-sen</label><br>
+        <input type="radio" id="kijunSen" name="ichi" value=" خط kijun-sen ">
+        <label for="kijunSen">خط kijun-sen</label><br>
+        <input type="radio" id="senkouSpanA" name="ichi" value=" خط senkou-span-a ">
+        <label for="senkouSpanA">خط senkou-span-a</label><br>
+        <input type="radio" id="senkouSpanB" name="ichi" value=" خط senkou-span-b ">
+        <label for="senkouSpanB">خط senkou-span-b</label><br>
+        <input type="radio" id="chikouSpan" name="ichi" value=" خط chikou-span ">
+        <label for="chikouSpan">خط chikou-span</label><br>
+    </form>
+
+    <!-- momentum form -->
+    <form class="momentum-form">
+        <span>اندیکاتور Momentum با دوره ی </span>
+        <input id="momentum-inpt" type="text" class="num-inpt" />
+        <span>خط Momentum</span>
+    </form>
+
+    <!-- williams R form -->
+    <form class="williamsR-form">
+        <span>اندیکاتور Williams R با دوره ی </span>
+        <input id="williamsR-inpt" type="text" class="num-inpt" />
+        <span>خط Williams R</span>
+    </form>
+
+    <!-- rate of change form -->
+    <form class="roc-form">
+        <span>اندیکاتور Rate of Change با دوره ی </span>
+        <input id="roc-inpt" type="text" class="num-inpt" />
+        <span>خط ROC</span>
+    </form>
+
+    <!-- aroon form -->
+    <form class="aroon-form">
+        <span>اندیکاتور Aroon با دوره ی </span>
+        <input id="aroon-inpt" type="text" class="num-inpt" /><br>
+         <input type="radio" id="aroonUp" name="aroon" value=" خط aroon-up ">
+        <label for="aroonUp">خط aroon-up</label><br>
+        <input type="radio" id="aroonDown" name="aroon" value=" خط aroon-down ">
+        <label for="aroonDown">خط aroon-down</label><br>
+    </form>
+
+    <!-- ================================ -->
+
+    <!-- ========= prices form ========== -->
+
+    <!-- open form -->
+    <form class='opn-form'>
+        <span> قیمت آغازین </span><br><br>
+        <input type="checkbox" class="today" id="opnchk" name="" value="امروز">
+        <label for="opnchk">امروز</label><br>
+        <input type="text" id="opn-inpt" class="num-inpt" /><span> روز قبل </span>
+    </form>
+
+    <!-- high form -->
+    <form class='high-form'>
+        <span> بالاترین قیمت </span><br><br>
+        <input type="checkbox" class="today" id="highchk" name="" value="امروز">
+        <label for="highchk">امروز</label><br>
+        <input type="text" id="high-inpt" class="num-inpt" /><span> روز قبل </span>
+    </form>
+
+    <!-- low form -->
+    <form class='lw-form'>
+        <span> پایین ترین قیمت </span><br><br>
+        <input type="checkbox" class="today" id="lwchk" name="" value="امروز">
+        <label for="lwchk">امروز</label><br>
+        <input type="text" id="lw-inpt" class="num-inpt" /><span> روز قبل </span>
+    </form>
+
+    <!-- close form -->
+    <form class='cls-form'>
+        <span> قیمت پایانی </span><br><br>
+        <input type="checkbox" class="today" id="clschk" name="" value="امروز">
+        <label for="clschk">امروز</label><br>
+        <input type="text" id="cls-inpt" class="num-inpt" /><span> روز قبل </span>
+    </form>
+
+    <!-- ================================ -->
+
+    <!-- volume form -->
+    <form class='vol-form'>
+        <span> حجم </span><br><br>
+        <input type="checkbox" class="today" id="volchk" name="" value="امروز">
+        <label for="volchk">امروز</label><br>
+        <input type="text" id="vol-inpt" class="num-inpt" /><span> روز قبل </span><br>
+    </form>
+
+    <!-- amount form -->
+    <form class='amnt-form'>
+        <span> مقدار </span><br>
+        <input type="text" id="amnt-inpt" class="num-inpt" /><br>
+    </form>    
+</body>
+</html>

@@ -1,0 +1,148 @@
+/* strategy name field */
+#id_some_str{
+    direction: ltr;
+}
+#id_name{
+    width: 152px;
+    height: 35px;
+    margin: 5px 1px;
+    border-radius: 2px;
+    border: solid 1px silver;
+    color: rgb(49, 49, 49);
+    background-color: #ededed9c;
+    outline: none;
+}
+
+#id_name:focus{
+    background-color:#007FFF;
+    color:white;
+    border:solid 1px #003EFF;
+    outline: none;
+}
+
+/* =========================== */
+
+/* stock field */
+
+#id_stock{
+    width: 152px;
+    outline: none;
+    margin: 5px 1px;
+}
+
+/* ============================== */
+
+/* select list */
+
+.select-list {
+    cursor: pointer;
+    margin: 5px 1px;
+    display: inline;
+    text-align: center;
+    font-family: Samim;
+    padding: 0px;
+    width: 152px;
+    height: 35px;
+    border-radius: 2px;
+    border: solid 1px silver;
+    color: rgb(49, 49, 49);
+    background-color: #ededed9c;
+    outline: none;
+}
+
+.select-list option {
+    background-color: white;
+    border: solid 1px #007FFF;
+    border-radius: 2px;
+    color: black;
+    
+}
+.select-list option:hover{
+    background-color: #007FFF;
+}
+
+/* ================================ */
+
+/* volume & amount button */
+
+.button-tools {
+    outline: none;    
+}
+
+/* ========================== */
+
+/* delete bottun */
+
+#del{
+    width: 60px;
+    height: 35px;
+    margin: 5px 1px;
+    border-radius: 2px;
+    border: solid 1px rgb(233, 48, 48);
+    color: rgb(49, 49, 49);
+    background-color: #d169699c;
+    outline: none;
+    cursor: pointer;
+}
+#del:hover{
+    background-color:#df5c5c9c ;
+    border: solid 1px rgb(238, 14, 14);
+
+}
+/* ==================== */
+
+/* number input */
+
+.num-inpt {
+    width: 50px;
+    display: inline;
+    background-color:#ededed9c;
+    color: black;
+    margin: 10px;
+    height: 30px;
+    border-radius: 2px;
+    border: solid 1px silver;
+    outline: none;
+}
+
+.num-inpt:focus{
+    background-color:#007FFF;
+    color:white;
+    border:solid 1px #003EFF;
+    outline: none;
+}
+
+/* ========================= */
+
+.toolbar
+ {
+    margin: 100px 100px 100px 0;
+}
+.container{
+    margin: 50px 50px 50px 0;
+}
+
+/* done button */
+
+#done {
+    background-color: rgb(144, 207, 186);
+    width: 60px;
+    height: 35px;
+    margin: 5px 1px;
+    border-radius: 2px;
+    color: rgb(49, 49, 49);
+    border:solid 1px rgb(72, 184, 146);
+    outline: none;
+    cursor: pointer;
+}
+
+#done:hover{
+    background-color: rgb(110, 202, 172);
+    border:solid 1px rgb(43, 177, 132);
+}
+
+/* ========================== */
+
+.inline-blk{
+    display: inline;
+}
